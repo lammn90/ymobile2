@@ -60,11 +60,11 @@
                         <th class="bold">
                             <label>お名前(漢字)</label>
                         </th>
-                        <td>
+                        <td class="name_kan_ji">
                             田中太郎
                         </td>
                         <th class="bold"><label>お名前(ふりがな)</label></th>
-                        <td>
+                        <td class="name_fu_ri_ga_na">
                             たなかたろう
                         </td>
                     </tr>
@@ -72,7 +72,7 @@
                         <th class="bold">
                             <label>電話番号</label>
                         </th>
-                        <td colspan="3">
+                        <td colspan="3" class="phone_number">
                             090123456789
                         </td>
                     </tr>
@@ -80,7 +80,7 @@
                         <th class="bold">
                             <label>メールアドレス</label>
                         </th>
-                        <td colspan="3">
+                        <td colspan="3" class="email">
                             smaple@example.com
                         </td>
                     </tr>
@@ -88,7 +88,7 @@
                         <th class="bold">
                             <label>お使いのケータイキャリア</label>
                         </th>
-                        <td colspan="3">
+                        <td colspan="3" class="mobile_phone">
                             SoftBank
                         </td>
                     </tr>
@@ -96,7 +96,7 @@
                         <th class="bold">
                             <label>ご希望のプラン</label>
                         </th>
-                        <td colspan="3">
+                        <td colspan="3" class="terminal">
                             この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
                         </td>
                     </tr>
@@ -108,7 +108,7 @@
 
         <!--.action--area-->
         <div class="action--area text-center mt40">
-            <a href="form-entry.html" class="btn btn--back btn--arrow-back mr20"><span>前のページに戻</span>る</a>
+            <a href="form-inquiry.html" class="btn btn--back btn--arrow-back mr20"><span>前のページに戻</span>る</a>
             <button type="submit" id="submitConfirm" class="btn btn--red btn--arrow w320">確認ページに進む</button>
         </div>
         <!--END .action--area-->
@@ -155,10 +155,26 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
+        loadData();
         $('#submitConfirm').click(function(){
             window.location = "form-inquiry-finish.html";
         });
     })
+
+    function loadData(){
+        var queryString = decodeURIComponent(window.location.search);
+        var href = $('.btn--back').attr('href');
+        $('.btn--back').attr('href',href+window.location.search);
+        queryString = queryString.substring(1);
+        var queries = queryString.split("&");
+        for (var i = 0; i < queries.length; i++)
+        {
+            var params = queries[i].split("=");
+            var paramName = params[0];
+            var value = params[1];
+            $('.' + paramName).html(value);
+        }
+    }
 </script>
 <!--END script-->
 </body>

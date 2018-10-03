@@ -67,14 +67,14 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <input type="text" name="name" placeholder="例）田中太郎" class="form-control required">
+                                <input type="text" name="name_kan_ji" placeholder="例）田中太郎" class="form-control required">
                                 <span class="error">未入力です</span>
                             </div>
                         </td>
                         <td class="text-right pb0"><label>ふりがな</label></td>
                         <td>
                             <div class="form-group">
-                                <input type="text" name="phonetic" placeholder="例）たなかたろう" class="form-control required">
+                                <input type="text" name="name_fu_ri_ga_na" placeholder="例）たなかたろう" class="form-control required">
                                 <span class="error">未入力です</span>
                             </div>
                         </td>
@@ -89,7 +89,7 @@
                         </td>
                         <td class="pb5">
                             <div class="form-group">
-                                <input type="text" name="phonetic" placeholder="例）0000000" class="form-control">
+                                <input type="text" name="zip_code" placeholder="例）0000000" class="form-control">
                             </div>
                         </td>
                         <td class="pb5" colspan="3"><span class="small">※郵便番号を入力すると、以下の住所が自動的に入力されます。</span></td>
@@ -100,7 +100,7 @@
                         </td>
                         <td class="bt0 pb5 pt5">
                             <div class="form-group">
-                                <select class="form-control required">
+                                <select class="form-control required" name="province">
                                     <option selected disabled>-- 選択 --</option>
                                     <option value="1">Sample Text 01</option>
                                     <option value="1">Sample Text 01</option>
@@ -115,7 +115,7 @@
                         <td class="bt0 pb5 pt5 text-right"><label>市区町村</label></td>
                         <td class="bt0 pb5 pt5">
                             <div class="form-group">
-                                <input type="text" name="" placeholder="例）○○市" class="form-control required">
+                                <input type="text" name="city" placeholder="例）○○市" class="form-control required">
                                 <span class="error">未入力です</span>
                             </div>
                         </td>
@@ -127,7 +127,7 @@
                         </td>
                         <td class="bt0 pb5 pt5" colspan="3">
                             <div class="form-group">
-                                <input type="text" name="" placeholder="例）○○町0丁目0番0号" class="form-control required">
+                                <input type="text" name="address" placeholder="例）○○町0丁目0番0号" class="form-control required">
                                 <span class="error">未入力です</span>
                             </div>
                         </td>
@@ -139,7 +139,7 @@
                         </td>
                         <td class="bt0 pt5" colspan="3">
                             <div class="form-group">
-                                <input type="text" name="" placeholder="例）マンション101号室" class="form-control required">
+                                <input type="text" name="building_name" placeholder="例）マンション101号室" class="form-control required">
                             </div>
                         </td>
                         <td class="bt0 pt5"></td>
@@ -151,7 +151,7 @@
                         <td></td>
                         <td>
                             <div class="form-group">
-                                <input type="text" name="" placeholder="例）09012345678" class="form-control required">
+                                <input type="text" name="phone_number" placeholder="例）09012345678" class="form-control required">
                                 <span class="error">10桁以上で入力してください</span>
                             </div>
                         </td>
@@ -166,7 +166,7 @@
                         <td></td>
                         <td colspan="3">
                             <div class="form-group">
-                                <input type="text" name="" placeholder="例）sample@example.com(携帯OK)" class="form-control required">
+                                <input type="text" name="email" placeholder="例）sample@example.com(携帯OK)" class="form-control required">
                                 <span class="error">未入力です</span>
                             </div>
                         </td>
@@ -181,23 +181,23 @@
                         <td colspan="3">
                             <div class="form-group form-inline">
                                 <div class="radio">
-                                    <input checked type="radio" name="">
+                                    <input checked type="radio" value="SoftBank" name="mobile_phone">
                                     <label>SoftBank</label>
                                 </div>
                                 <div class="radio">
-                                    <input type="radio" name="">
+                                    <input type="radio" name="mobile_phone" value="au">
                                     <label>au</label>
                                 </div>
                                 <div class="radio">
-                                    <input type="radio" name="">
+                                    <input type="radio" name="mobile_phone" value="docomo">
                                     <label>docomo</label>
                                 </div>
                                 <div class="radio">
-                                    <input type="radio" name="">
+                                    <input type="radio" name="mobile_phone" value="Y!mobile">
                                     <label>Y!mobile</label>
                                 </div>
                                 <div class="radio">
-                                    <input type="radio" name="">
+                                    <input type="radio" name="mobile_phone" value="その他">
                                     <label>その他</label>
                                 </div>
 
@@ -212,7 +212,7 @@
                         <td></td>
                         <td colspan="4">
                             <div class="form-group">
-                                <textarea class="form-control" name="" placeholder="ご相談内容をこちらにご記入ください。" rows="5"></textarea>
+                                <textarea class="form-control" name="terminal" placeholder="ご相談内容をこちらにご記入ください。" rows="5"></textarea>
                             </div>
                         </td>
                     </tr>
@@ -292,14 +292,49 @@
                     _this.removeClass('error').closest('.form-group').removeClass('error');
                 }
             });
+
             if(errorIndex == 0){
-                window.location = "form-inquiry-confirm.html";
+                var dataForm = getPrama('input','?');
+                dataForm = getPrama('select',dataForm);
+                dataForm = getPrama('textarea',dataForm);
+                window.location = "form-inquiry-confirm.html" + dataForm;
             }
         });
     }
     $(document).ready(function(){
+        loadData();
         checkValidation();
     })
+
+    function getPrama(tagName, dataForm){
+        $(tagName).each(function(){
+            var _this = $(this);
+            var name = _this.attr('name');
+            var value = _this.val();
+            if(dataForm != '?') dataForm+= "&";
+            dataForm+= name + "=" + value;
+        });
+        return dataForm;
+    }
+
+    function loadData(){
+        if(window.location.search){
+            var queryString = decodeURIComponent(window.location.search);
+            var href = $('.btn--back').attr('href');
+            $('.btn--back').attr('href',href+window.location.search);
+            queryString = queryString.substring(1);
+            var queries = queryString.split("&");
+            for (var i = 0; i < queries.length; i++)
+            {
+                var params = queries[i].split("=");
+                var paramName = params[0];
+                var value = params[1];
+                $('input[name='+ paramName +']').val(value);
+                $('select[name=' + paramName + ']').val(value);
+                $('textarea[name='+ paramName + ']').val(value);
+            }
+        }
+    }
 </script>
 <!--END script-->
 </body>
