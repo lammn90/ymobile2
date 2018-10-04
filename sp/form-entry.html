@@ -64,7 +64,7 @@
                     </dt>
                     <dd>
                         <div class="form-group">
-                            <input type="text" name="zip_code" placeholder="例）0000000" class="form-control">
+                            <input type="text" name="zip_code" placeholder="例）0000000" class="form-control sum_address">
                         </div>
                     </dd>
                 </dl>
@@ -74,8 +74,8 @@
                     </dt>
                     <dd>
                         <div class="form-group">
-                            <select class="form-control required" name="province">
-                                <option value="" selected="" disabled>--選択--</option>
+                            <select class="form-control required sum_address" name="province">
+                                <option value disabled>--選択--</option>
                                 <option value="北海道">北海道</option>
                                 <option value="青森県">青森県</option>
                                 <option value="岩手県">岩手県</option>
@@ -134,7 +134,7 @@
                     </dt>
                     <dd>
                         <div class="form-group">
-                            <input type="text" name="city" placeholder="例）0町0丁目0番0号　マンション101号室" class="form-control required">
+                            <input type="text" name="city" placeholder="例）0町0丁目0番0号　マンション101号室" class="form-control required sum_address">
                             <span class="error">未入力です</span>
                         </div>
                     </dd>
@@ -169,11 +169,11 @@
                         <div class="form-group">
                             <select class="form-control required">
                                 <option selected disabled>都道府県</option>
-                                <option value="1" name="mobile_shop">SoftBank</option>
-                                <option value="2" name="mobile_shop">au</option>
-                                <option value="3" name="mobile_shop">docomo</option>
-                                <option value="4" name="mobile_shop">Y!mobile</option>
-                                <option value="5" name="mobile_shop">その他</option>
+                                <option value="SoftBank" name="mobile_shop">SoftBank</option>
+                                <option value="au" name="mobile_shop">au</option>
+                                <option value="docomo" name="mobile_shop">docomo</option>
+                                <option value="Y!mobile" name="mobile_shop">Y!mobile</option>
+                                <option value="その他" name="mobile_shop">その他</option>
                             </select>
                             <span class="error">未入力です</span>
                         </div>
@@ -186,11 +186,11 @@
                         <div class="form-group">
                             <select class="form-control" name="plan_expected">
                                 <option selected disabled>-- 選択 --</option>
-                                <option value="1">プラン1</option>
-                                <option value="2">プラン2</option>
-                                <option value="3">プラン3</option>
-                                <option value="4">プラン4</option>
-                                <option value="4">プラン5</option>
+                                <option value="プラン1">プラン1</option>
+                                <option value="プラン2">プラン2</option>
+                                <option value="プラン3">プラン3</option>
+                                <option value="プラン4">プラン4</option>
+                                <option value="プラン5">プラン5</option>
                             </select>
                         </div>
                     </dd>
@@ -202,11 +202,11 @@
                         <div class="form-group">
                             <select class="form-control" name="output_expected">
                                 <option selected disabled value="">-- 選択 --</option>
-                                <option value="1">Sample Text 01</option>
-                                <option value="2">Sample Text 02</option>
-                                <option value="3">Sample Text 03</option>
-                                <option value="4">Sample Text 04</option>
-                                <option value="5">Sample Text 05</option>
+                                <option value="Sample Text 01">Sample Text 01</option>
+                                <option value="Sample Text 02">Sample Text 02</option>
+                                <option value="Sample Text 03">Sample Text 03</option>
+                                <option value="Sample Text 04">Sample Text 04</option>
+                                <option value="Sample Text 05">Sample Text 05</option>
                             </select>
                         </div>
                     </dd>
@@ -302,15 +302,28 @@
         loadData();
         checkValidation();
     });
-
+    var address = '';
     function getPrama(tagName, dataForm){
         $(tagName).each(function(){
             var _this = $(this);
-            var name = _this.attr('name');
-            var value = _this.val();
-            if(dataForm != '?') dataForm+= "&";
-            dataForm+= name + "=" + value;
+            var type = _this.attr('type');
+            if(type != 'radio' ||  ('radio' == type && _this.is(":checked")) ){
+                var name = _this.attr('name');
+                var value = _this.val();
+
+                if(_this.hasClass('sum_address')){
+                    if(value == 'zip_code'){
+                        address+= '〒' + value + '<br/>';
+                    }else{
+                        address+= value;
+                    }
+                }
+                if(dataForm != '?') dataForm+= "&";
+                if(value == null) value = '';
+                dataForm+= name + "=" + value;
+            }
         });
+        if(address != '')  dataForm+= '&sum_address' + "=" + address;
         return dataForm;
     }
 
@@ -327,9 +340,19 @@
                 var params = queries[i].split("=");
                 var paramName = params[0];
                 var value = params[1];
-                $('input[name='+ paramName +']').val(value);
-                $('select[name=' + paramName + ']').val(value);
-                $('textarea[name='+ paramName + ']').val(value);
+                if(paramName != null){
+                    $('input[name='+ paramName +']').each(function(){
+                        var _this = $(this);
+                        if(_this.attr('type') == 'radio'){
+                            if(value == _this.val())
+                                $(this).prop('checked', true);
+                        }else{
+                            _this.val(value);
+                        }
+                    });
+                    $('select[name=' + paramName + ']').val(value);
+                    $('textarea[name='+ paramName + ']').val(value);
+                }
             }
         }
     }

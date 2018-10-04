@@ -89,7 +89,7 @@
                         </td>
                         <td class="pb5">
                             <div class="form-group">
-                                <input type="text" name="zip_code" placeholder="例）0000000" class="form-control">
+                                <input type="text" name="zip_code" placeholder="例）0000000" class="form-control sum_address">
                             </div>
                         </td>
                         <td class="pb5" colspan="3"><span class="small">※郵便番号を入力すると、以下の住所が自動的に入力されます。</span></td>
@@ -100,7 +100,7 @@
                         </td>
                         <td class="bt0 pb5 pt5">
                             <div class="form-group">
-                                <select class="form-control required" name="province">
+                                <select class="form-control required sum_address" name="province">
                                     <option value="" selected="" disabled>--選択--</option>
                                     <option value="北海道">北海道</option>
                                     <option value="青森県">青森県</option>
@@ -156,7 +156,7 @@
                         <td class="bt0 pb5 pt5 text-right"><label>市区町村</label></td>
                         <td class="bt0 pb5 pt5">
                             <div class="form-group">
-                                <input type="text" name="city" placeholder="例）○○市" class="form-control required">
+                                <input type="text" name="city" placeholder="例）○○市" class="form-control required sum_address">
                                 <span class="error">未入力です</span>
                             </div>
                         </td>
@@ -168,7 +168,7 @@
                         </td>
                         <td class="bt0 pb5 pt5" colspan="3">
                             <div class="form-group">
-                                <input type="text" name="address" placeholder="例）○○町0丁目0番0号" class="form-control required">
+                                <input type="text" name="address" placeholder="例）○○町0丁目0番0号" class="form-control required sum_address">
                                 <span class="error">未入力です</span>
                             </div>
                         </td>
@@ -180,7 +180,7 @@
                         </td>
                         <td class="bt0 pt5" colspan="3">
                             <div class="form-group">
-                                <input type="text" name="building_name" placeholder="例）マンション101号室" class="form-control required">
+                                <input type="text" name="building_name" placeholder="例）マンション101号室" class="form-control required sum_address">
                             </div>
                         </td>
                         <td class="bt0 pt5"></td>
@@ -324,7 +324,7 @@
             $('.form-group .required').each(function(){
                 var _this = $(this);
                 var value = _this.val();
-                if(value === '' ){
+                if(value === '' || value === null ){
                     _this.addClass('error').closest('.form-group').addClass('error');
                     areaMessage.removeClass('hide');
                     if(errorIndex == 0){
@@ -343,6 +343,7 @@
                 dataForm = getPrama('textarea',dataForm);
                 window.location = "form-inquiry-confirm.html" + dataForm;
             }
+            return;
         });
     }
     $(document).ready(function(){
@@ -350,22 +351,36 @@
         checkValidation();
     });
 
+    var address = '';
     function getPrama(tagName, dataForm){
         $(tagName).each(function(){
             var _this = $(this);
-            var name = _this.attr('name');
-            var value = _this.val();
-            if(dataForm != '?') dataForm+= "&";
-            dataForm+= name + "=" + value;
+            var type = _this.attr('type');
+            if(type != 'radio' ||  ('radio' == type && _this.is(":checked")) ){
+                var name = _this.attr('name');
+                var value = _this.val();
+
+                if(_this.hasClass('sum_address')){
+                    if(value == 'zip_code'){
+                        address+= '〒' + value + '<br/>';
+                    }else{
+                        address+= value;
+                    }
+                }
+                if(dataForm != '?') dataForm+= "&";
+                dataForm+= name + "=" + value;
+            }
         });
+        if(address != '')  dataForm+= '&sum_address' + "=" + address;
         return dataForm;
     }
 
     function loadData(){
         if(window.location.search){
             var queryString = decodeURIComponent(window.location.search);
-            var href = $('.btn--back').attr('href');
-            $('.btn--back').attr('href',href+window.location.search);
+            var btnBack = $('#btnBack');
+            var href = btnBack.attr('href');
+            btnBack.attr('href',href+window.location.search);
             queryString = queryString.substring(1);
             var queries = queryString.split("&");
             for (var i = 0; i < queries.length; i++)
@@ -373,9 +388,19 @@
                 var params = queries[i].split("=");
                 var paramName = params[0];
                 var value = params[1];
-                $('input[name='+ paramName +']').val(value);
-                $('select[name=' + paramName + ']').val(value);
-                $('textarea[name='+ paramName + ']').val(value);
+                if(paramName != null){
+                    $('input[name='+ paramName +']').each(function(){
+                        var _this = $(this);
+                        if(_this.attr('type') == 'radio'){
+                            if(value == _this.val())
+                                $(this).prop('checked', true);
+                        }else{
+                            _this.val(value);
+                        }
+                    });
+                    $('select[name=' + paramName + ']').val(value);
+                    $('textarea[name='+ paramName + ']').val(value);
+                }
             }
         }
     }
