@@ -101,7 +101,7 @@
 
         <!--.action--area-->
         <div class="action--area text-center mt60">
-            <button type="submit" class="btn btn--lg btn--red btn--arrow wp100 mb20">必須項目をご入力ください</button>
+            <button id="submitConfirm" type="submit" class="btn btn--lg btn--red btn--arrow wp100 mb20">必須項目をご入力ください</button>
             <a href="form-inquiry.html" class="btn btn--dark-grey btn--lg btn--arrow-back wp100"><span>前のページに戻る</span></a>
         </div>
         <!--END .action--area-->
@@ -145,6 +145,13 @@
 <!--Script-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/script.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#submitConfirm').click(function(){
+            window.location = "form-inquiry-finish.html";
+        });
+    })
+</script>
 <!--END script-->
 </body>
 </html>
