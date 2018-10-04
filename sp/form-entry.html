@@ -24,7 +24,7 @@
 <!--Main -->
 <div class="site__main">
     <div class="container">
-        <h2 class="ttl">お申し込み相談フォーム</h2>
+        <h2 class="ttl">お申し込みフォーム</h2>
 
         <!--.info--area-->
         <div class="info--area mt30">
@@ -168,7 +168,7 @@
                     <dd>
                         <div class="form-group">
                             <select class="form-control required">
-                                <option selected disabled>都道府県</option>
+                                <option selected disabled>-- 選択 --</option>
                                 <option value="SoftBank" name="mobile_shop">SoftBank</option>
                                 <option value="au" name="mobile_shop">au</option>
                                 <option value="docomo" name="mobile_shop">docomo</option>
@@ -186,11 +186,10 @@
                         <div class="form-group">
                             <select class="form-control" name="plan_expected">
                                 <option selected disabled>-- 選択 --</option>
-                                <option value="プラン1">プラン1</option>
-                                <option value="プラン2">プラン2</option>
-                                <option value="プラン3">プラン3</option>
-                                <option value="プラン4">プラン4</option>
-                                <option value="プラン5">プラン5</option>
+                                <option value="プラン1">スマホプランS</option>
+                                <option value="プラン2">スマホプランM</option>
+                                <option value="プラン3">スマホプランL</option>
+                                <option value="プラン4">ケータイプランSS</option>
                             </select>
                         </div>
                     </dd>
@@ -201,12 +200,33 @@
                     <dd>
                         <div class="form-group">
                             <select class="form-control" name="output_expected">
-                                <option selected disabled value="">-- 選択 --</option>
-                                <option value="Sample Text 01">Sample Text 01</option>
-                                <option value="Sample Text 02">Sample Text 02</option>
-                                <option value="Sample Text 03">Sample Text 03</option>
-                                <option value="Sample Text 04">Sample Text 04</option>
-                                <option value="Sample Text 05">Sample Text 05</option>
+                                <option value="">-- 選択 --</option>
+                                <optgroup label="---- スマートフォン ----" class="js-terminal1">
+                                    <option value="Andorid One X3">Andorid One X3</option>
+                                    <option value="Andorid One X2">Andorid One X2</option>
+                                    <option value="Andorid One X1">Andorid One X1</option>
+                                    <option value="Andorid One S3">Andorid One S3</option>
+                                    <option value="Andorid One S2">Andorid One S2</option>
+                                    <option value="Andorid One S1">Andorid One S1</option>
+                                    <option value="507SH,Android One">507SH,Android One</option>
+                                    <option value="nova lite for Y!mobile">nova lite for Y!mobile</option>
+                                    <option value="DIGNO E">DIGNO E</option>
+                                    <option value="Nexus 5X">Nexus 5X</option>
+                                    <option value="P10 Plus">P10 Plus</option>
+                                    <option value="P10">P10</option>
+                                    <option value="P10 lite">P10 lite</option>
+                                    <option value="Mate10 Pro">Mate10 Pro</option>
+                                    <option value="Mate10 lite">Mate10 lite</option>
+                                </optgroup>
+                                <optgroup label="---- 携帯電話 ----" class="js-terminal2" style="display: none;">
+                                    <option value="DIGNO ケータイ2">DIGNO ケータイ2</option>
+                                    <option value="Simply AQUOS ケータイ2">Simply AQUOS ケータイ2</option>
+                                    <option value="DIGNO ケータイ">DIGNO ケータイ</option>
+                                    <option value="Simply">Simply</option>
+                                </optgroup>
+                                <optgroup label="---- SIMカード ----" class="js-terminal1">
+                                    <option value="SIMカード">SIMカード</option>
+                                </optgroup>
                             </select>
                         </div>
                     </dd>
@@ -225,7 +245,7 @@
 
         <!--.action--area-->
         <div class="action--area text-center mt60">
-            <button id="submitStep1" type="submit" class="btn btn--lg btn--dark-grey wp100">必須項目をご入力ください</button>
+            <button id="submitStep1" type="submit" class="btn btn--lg btn--dark-grey wp100">確認ページに進む</button>
         </div>
         <!--END .action--area-->
 

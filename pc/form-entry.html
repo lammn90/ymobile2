@@ -24,7 +24,7 @@
 <!--Main -->
 <div class="site__main grey--f5 pb40">
     <div class="container">
-        <h3 class="ttl--form">Y!mobile お申し込み相談フォーム</h3>
+        <h3 class="ttl--form">Y!mobile お申し込みフォーム</h3>
 
         <!--.process--bar-->
         <div class="process--bar">
@@ -253,27 +253,22 @@
                         <td></td>
                         <td colspan="3">
                             <div class="form-group form-inline">
-                                <div class="radio">
-                                    <input checked value="プラン1" type="radio" name="plan_expected">
-                                    <label>プラン1</label>
+                                <div class="radio" style="margin-right: 20px;">
+                                    <input checked value="スマホプランS" type="radio" name="plan_expected">
+                                    <label>スマホプランS</label>
                                 </div>
-                                <div class="radio">
-                                    <input type="radio" value="プラン2" name="plan_expected">
-                                    <label>プラン2</label>
+                                <div class="radio" style="margin-right: 20px;">
+                                    <input type="radio" value="スマホプランM" name="plan_expected">
+                                    <label>スマホプランM</label>
                                 </div>
-                                <div class="radio">
-                                    <input type="radio"value="プラン3" name="plan_expected">
-                                    <label>プラン3</label>
+                                <div class="radio" style="margin-right: 20px;">
+                                    <input type="radio"value="スマホプランL" name="plan_expected">
+                                    <label>スマホプランL</label>
                                 </div>
-                                <div class="radio">
-                                    <input type="radio" value="プラン4" name="plan_expected">
-                                    <label>プラン4</label>
+                                <div class="radio" style="margin-right: 20px;">
+                                    <input type="radio" value="ケータイプランSS" name="plan_expected">
+                                    <label>ケータイプランSS</label>
                                 </div>
-                                <div class="radio">
-                                    <input type="radio" value="プラン5" name="plan_expected">
-                                    <label>プラン5</label>
-                                </div>
-
                             </div>
                         </td>
                         <td></td>
@@ -285,13 +280,35 @@
                         <td></td>
                         <td>
                             <div class="form-group">
+
                                 <select class="form-control" name="output_expected">
-                                    <option selected disabled value="">-- 選択 --</option>
-                                    <option value="Sample Text 01">Sample Text 01</option>
-                                    <option value="Sample Text 02">Sample Text 02</option>
-                                    <option value="Sample Text 03">Sample Text 03</option>
-                                    <option value="Sample Text 04">Sample Text 04</option>
-                                    <option value="Sample Text 05">Sample Text 05</option>
+                                    <option value="">-- 選択 --</option>
+                                    <optgroup label="---- スマートフォン ----" class="js-terminal1">
+                                        <option value="Andorid One X3">Andorid One X3</option>
+                                        <option value="Andorid One X2">Andorid One X2</option>
+                                        <option value="Andorid One X1">Andorid One X1</option>
+                                        <option value="Andorid One S3">Andorid One S3</option>
+                                        <option value="Andorid One S2">Andorid One S2</option>
+                                        <option value="Andorid One S1">Andorid One S1</option>
+                                        <option value="507SH,Android One">507SH,Android One</option>
+                                        <option value="nova lite for Y!mobile">nova lite for Y!mobile</option>
+                                        <option value="DIGNO E">DIGNO E</option>
+                                        <option value="Nexus 5X">Nexus 5X</option>
+                                        <option value="P10 Plus">P10 Plus</option>
+                                        <option value="P10">P10</option>
+                                        <option value="P10 lite">P10 lite</option>
+                                        <option value="Mate10 Pro">Mate10 Pro</option>
+                                        <option value="Mate10 lite">Mate10 lite</option>
+                                    </optgroup>
+                                    <optgroup label="---- 携帯電話 ----" class="js-terminal2" style="display: none;">
+                                        <option value="DIGNO ケータイ2">DIGNO ケータイ2</option>
+                                        <option value="Simply AQUOS ケータイ2">Simply AQUOS ケータイ2</option>
+                                        <option value="DIGNO ケータイ">DIGNO ケータイ</option>
+                                        <option value="Simply">Simply</option>
+                                    </optgroup>
+                                    <optgroup label="---- SIMカード ----" class="js-terminal1">
+                                        <option value="SIMカード">SIMカード</option>
+                                    </optgroup>
                                 </select>
                             </div>
                         </td>
@@ -347,7 +364,7 @@
     <div class="copyright">
         <div class="container">
             <ul class="ulnostyle">
-                <li class="text-center"><p>Copyright Company Name</p></li>
+                <li class="text-center"><p>Copyright 株式会社 ALL CONNECT</p></li>
             </ul>
         </div>
     </div><!--END .copyright-->
