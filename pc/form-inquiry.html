@@ -222,23 +222,23 @@
                         <td colspan="3">
                             <div class="form-group form-inline">
                                 <div class="radio">
-                                    <input checked type="radio" value="SoftBank" name="mobile_phone">
+                                    <input checked type="radio" value="SoftBank" name="mobile_shop">
                                     <label>SoftBank</label>
                                 </div>
                                 <div class="radio">
-                                    <input type="radio" name="mobile_phone" value="au">
+                                    <input type="radio" value="au" name="mobile_shop">
                                     <label>au</label>
                                 </div>
                                 <div class="radio">
-                                    <input type="radio" name="mobile_phone" value="docomo">
+                                    <input type="radio" value="docomo" name="mobile_shop">
                                     <label>docomo</label>
                                 </div>
                                 <div class="radio">
-                                    <input type="radio" name="mobile_phone" value="Y!mobile">
+                                    <input type="radio" value="Y!mobile" name="mobile_shop">
                                     <label>Y!mobile</label>
                                 </div>
                                 <div class="radio">
-                                    <input type="radio" name="mobile_phone" value="その他">
+                                    <input type="radio" value="その他" name="mobile_shop">
                                     <label>その他</label>
                                 </div>
 
@@ -264,7 +264,7 @@
         <!--END .form--area-->
 
         <!--.message--area-->
-        <div class="message--area mt30">
+        <div class="message--area mt30 hide">
             <p>ここにトークンエラーのテキストが入ります。コレはダミーテキストです。</p>
         </div>
         <!--END .message--area-->
@@ -318,6 +318,7 @@
 <script type="text/javascript">
     function checkValidation(){
         var form = $('#inquiry-form');
+        var areaMessage = $('.message--area');
         $('#submitStep1').click(function(){
             var errorIndex = 0;
             $('.form-group .required').each(function(){
@@ -325,12 +326,14 @@
                 var value = _this.val();
                 if(value === '' ){
                     _this.addClass('error').closest('.form-group').addClass('error');
+                    areaMessage.removeClass('hide');
                     if(errorIndex == 0){
                         _this.focus();
                     }
                     errorIndex++;
                 }else{
                     _this.removeClass('error').closest('.form-group').removeClass('error');
+                    areaMessage.addClass('hide');
                 }
             });
 

@@ -35,14 +35,14 @@
         <!--.form--area-->
         <div class="form--area mt50">
 
-            <form id="entry-form" class="form">
+            <form id="inquiry-form" class="form">
                 <dl>
                     <dt>
                         <label class="head--label">お名前 <span class="required">必須</span> <span class="icon icon--ok">OK</span></label>
                     </dt>
                     <dd>
-                        <div class="form-group error">
-                            <input type="text" name="name" placeholder="例）田中　太郎" class="form-control required error">
+                        <div class="form-group">
+                            <input type="text" name="name_kan_ji" placeholder="例）田中　太郎" class="form-control required">
                             <span class="error">未入力です</span>
                         </div>
                     </dd>
@@ -52,8 +52,8 @@
                         <label>ふりがな</label>
                     </dt>
                     <dd>
-                        <div class="form-group error">
-                            <input type="text" name="phonetic" placeholder="例）たなか　たろう" class="form-control required error">
+                        <div class="form-group">
+                            <input type="text" name="name_fu_ri_ga_na" placeholder="例）たなか　たろう" class="form-control required">
                             <span class="error">未入力です</span>
                         </div>
                     </dd>
@@ -64,7 +64,7 @@
                     </dt>
                     <dd>
                         <div class="form-group">
-                            <input type="text" name="phonetic" placeholder="例）0000000" class="form-control">
+                            <input type="text" name="zip_code" placeholder="例）0000000" class="form-control">
                         </div>
                     </dd>
                 </dl>
@@ -73,15 +73,56 @@
                         <label>都道府県 <span class="required">必須</span> <span class="icon icon--ok">OK</span></label>
                     </dt>
                     <dd>
-                        <div class="form-group error">
-                            <select class="form-control required error">
-                                <option selected disabled>都道府県</option>
-                                <option value="1">Sample Text 01</option>
-                                <option value="1">Sample Text 01</option>
-                                <option value="2">Sample Text 02</option>
-                                <option value="3">Sample Text 03</option>
-                                <option value="4">Sample Text 04</option>
-                                <option value="5">Sample Text 05</option>
+                        <div class="form-group">
+                            <select class="form-control required" name="province">
+                                <option value="" selected="" disabled>--選択--</option>
+                                <option value="北海道">北海道</option>
+                                <option value="青森県">青森県</option>
+                                <option value="岩手県">岩手県</option>
+                                <option value="宮城県">宮城県</option>
+                                <option value="秋田県">秋田県</option>
+                                <option value="山形県">山形県</option>
+                                <option value="福島県">福島県</option>
+                                <option value="茨城県">茨城県</option>
+                                <option value="栃木県">栃木県</option>
+                                <option value="群馬県">群馬県</option>
+                                <option value="埼玉県">埼玉県</option>
+                                <option value="千葉県">千葉県</option>
+                                <option value="東京都">東京都</option>
+                                <option value="神奈川県">神奈川県</option>
+                                <option value="新潟県">新潟県</option>
+                                <option value="富山県">富山県</option>
+                                <option value="石川県">石川県</option>
+                                <option value="福井県">福井県</option>
+                                <option value="山梨県">山梨県</option>
+                                <option value="長野県">長野県</option>
+                                <option value="岐阜県">岐阜県</option>
+                                <option value="静岡県">静岡県</option>
+                                <option value="愛知県">愛知県</option>
+                                <option value="三重県">三重県</option>
+                                <option value="滋賀県">滋賀県</option>
+                                <option value="京都府">京都府</option>
+                                <option value="大阪府">大阪府</option>
+                                <option value="兵庫県">兵庫県</option>
+                                <option value="奈良県">奈良県</option>
+                                <option value="和歌山県">和歌山県</option>
+                                <option value="鳥取県">鳥取県</option>
+                                <option value="島根県">島根県</option>
+                                <option value="岡山県">岡山県</option>
+                                <option value="広島県">広島県</option>
+                                <option value="山口県">山口県</option>
+                                <option value="徳島県">徳島県</option>
+                                <option value="香川県">香川県</option>
+                                <option value="愛媛県">愛媛県</option>
+                                <option value="高知県">高知県</option>
+                                <option value="福岡県">福岡県</option>
+                                <option value="佐賀県">佐賀県</option>
+                                <option value="長崎県">長崎県</option>
+                                <option value="熊本県">熊本県</option>
+                                <option value="大分県">大分県</option>
+                                <option value="宮崎県">宮崎県</option>
+                                <option value="鹿児島県">鹿児島県</option>
+                                <option value="沖縄県">沖縄県</option>
                             </select>
                             <span class="error">未入力です</span>
                         </div>
@@ -92,8 +133,8 @@
                         <label>市区町村・番地・建物名など <span class="required">必須</span> <span class="icon icon--ok">OK</span></label>
                     </dt>
                     <dd>
-                        <div class="form-group error">
-                            <input type="text" name="" placeholder="例）0町0丁目0番0号　マンション101号室" class="form-control required error">
+                        <div class="form-group">
+                            <input type="text" name="city" placeholder="例）0町0丁目0番0号　マンション101号室" class="form-control required">
                             <span class="error">未入力です</span>
                         </div>
                     </dd>
@@ -103,8 +144,8 @@
                         <label class="head--label">電話番号 <span class="required">必須</span> <span class="icon icon--ok">OK</span></label>
                     </dt>
                     <dd>
-                        <div class="form-group error">
-                            <input type="text" name="" placeholder="例）09012345678" class="form-control error">
+                        <div class="form-group">
+                            <input type="text" name="phone_number" placeholder="例）09012345678" class="form-control required">
                             <span class="error">10桁以上で入力してください</span>
                         </div>
                     </dd>
@@ -114,8 +155,8 @@
                         <label class="head--label">メールアドレス <span class="required">必須</span> <span class="icon icon--ok">OK</span></label>
                     </dt>
                     <dd>
-                        <div class="form-group error">
-                            <input type="text" name="" placeholder="例）sample@example.com(携帯OK)" class="form-control error">
+                        <div class="form-group">
+                            <input type="text" name="email" placeholder="例）sample@example.com(携帯OK)" class="form-control required">
                             <span class="error">未入力です</span>
                         </div>
                     </dd>
@@ -125,14 +166,14 @@
                         <label class="head--label">お使いのケータイキャリア <span class="required">必須</span> <span class="icon icon--ok">OK</span></label>
                     </dt>
                     <dd>
-                        <div class="form-group error">
-                            <select class="form-control required error">
+                        <div class="form-group">
+                            <select class="form-control required">
                                 <option selected disabled>都道府県</option>
-                                <option value="1">SoftBank</option>
-                                <option value="1">au</option>
-                                <option value="2">docomo</option>
-                                <option value="3">Y!mobile</option>
-                                <option value="4">その他</option>
+                                <option value="1" name="mobile_shop">SoftBank</option>
+                                <option value="1" name="mobile_shop">au</option>
+                                <option value="2" name="mobile_shop">docomo</option>
+                                <option value="3" name="mobile_shop">Y!mobile</option>
+                                <option value="4" name="mobile_shop">その他</option>
                             </select>
                             <span class="error">未入力です</span>
                         </div>
@@ -143,7 +184,7 @@
                     <dt><label>ご相談内容</label></dt>
                     <dd>
                         <div class="form-group">
-                            <textarea class="form-control" name="" placeholder="ご相談内容をこちらにご記入ください。" rows="4"></textarea>
+                            <textarea class="form-control" name="terminal" placeholder="ご相談内容をこちらにご記入ください。" rows="4"></textarea>
                         </div>
                     </dd>
                 </dl>
@@ -153,14 +194,14 @@
         <!--END .form--area-->
 
         <!--.message--area-->
-        <div class="message--area mt30">
+        <div class="message--area mt30 hide">
             <p>ここにトークンエラーのテキストが入ります。これはダミーテキストです。</p>
         </div>
         <!--END .message--area-->
 
         <!--.action--area-->
         <div class="action--area text-center mt60">
-            <button type="submit" class="btn btn--lg btn--dark-grey wp100">必須項目をご入力ください</button>
+            <button id="submitStep1" type="submit" class="btn btn--lg btn--dark-grey wp100">必須項目をご入力ください</button>
         </div>
         <!--END .action--area-->
 
@@ -203,6 +244,71 @@
 <!--Script-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/script.js"></script>
+<script type="text/javascript">
+    function checkValidation(){
+        var form = $('#inquiry-form');
+        var areaMessage = $('.message--area');
+        $('#submitStep1').click(function(){
+            var errorIndex = 0;
+            $('.form-group .required').each(function(){
+                var _this = $(this);
+                var value = _this.val();
+                if(value === '' ){
+                    _this.addClass('error').closest('.form-group').addClass('error');
+                    areaMessage.removeClass('hide');
+                    if(errorIndex == 0){
+                        _this.focus();
+                    }
+                    errorIndex++;
+                }else{
+                    _this.removeClass('error').closest('.form-group').removeClass('error');
+                    areaMessage.addClass('hide');
+                }
+            });
+
+            if(errorIndex == 0){
+                var dataForm = getPrama('input','?');
+                dataForm = getPrama('select',dataForm);
+                dataForm = getPrama('textarea',dataForm);
+                window.location = "form-inquiry-confirm.html" + dataForm;
+            }
+        });
+    }
+    $(document).ready(function(){
+        loadData();
+        checkValidation();
+    });
+
+    function getPrama(tagName, dataForm){
+        $(tagName).each(function(){
+            var _this = $(this);
+            var name = _this.attr('name');
+            var value = _this.val();
+            if(dataForm != '?') dataForm+= "&";
+            dataForm+= name + "=" + value;
+        });
+        return dataForm;
+    }
+
+    function loadData(){
+        if(window.location.search){
+            var queryString = decodeURIComponent(window.location.search);
+            var href = $('.btn--back').attr('href');
+            $('.btn--back').attr('href',href+window.location.search);
+            queryString = queryString.substring(1);
+            var queries = queryString.split("&");
+            for (var i = 0; i < queries.length; i++)
+            {
+                var params = queries[i].split("=");
+                var paramName = params[0];
+                var value = params[1];
+                $('input[name='+ paramName +']').val(value);
+                $('select[name=' + paramName + ']').val(value);
+                $('textarea[name='+ paramName + ']').val(value);
+            }
+        }
+    }
+</script>
 <!--END script-->
 </body>
 </html>

@@ -38,7 +38,7 @@
                 <dt>
                     <label>お名前</label>
                 </dt>
-                <dd>
+                <dd class="name_kan_ji">
                     田中　太郎
                 </dd>
             </dl>
@@ -46,7 +46,7 @@
                 <dt>
                     <label>ふりがな</label>
                 </dt>
-                <dd>
+                <dd class="name_fu_ri_ga_na">
                     たなか　たろう
                 </dd>
             </dl>
@@ -54,7 +54,7 @@
                 <dt>
                     <label>ご住所</label>
                 </dt>
-                <dd>
+                <dd class="address">
                     〒000-0000<br>
                     ここに都道府県以下が入ります。
                 </dd>
@@ -63,7 +63,7 @@
                 <dt>
                     <label>電話番号</label>
                 </dt>
-                <dd>
+                <dd class="phone_number">
                     09012345678
                 </dd>
             </dl>
@@ -71,25 +71,25 @@
                 <dt>
                     <label>メールアドレス</label>
                 </dt>
-                <dd>
+                <dd class="email">
                     sample@example.com
                 </dd>
             </dl>
             <dl>
                 <dt><label>お使いのケータイキャリア</label></dt>
-                <dd>
+                <dd class="mobile_shop">
                     SoftBank
                 </dd>
             </dl>
             <dl>
                 <dt><label>ご希望のプラン</label></dt>
-                <dd>
+                <dd class="plan_expected">
                     プラン1
                 </dd>
             </dl>
             <dl>
                 <dt><label>ご希望の端末</label></dt>
-                <dd>
+                <dd class="output_expected">
                     Sample Text 01
                 </dd>
             </dl>
@@ -98,15 +98,15 @@
         <!--END .form--area-->
 
         <!--.message--area-->
-        <div class="message--area mt30">
+        <div class="message--area mt30 hide">
             <p>ここにトークンエラーのテキストが入ります。これはダミーテキストです。</p>
         </div>
         <!--END .message--area-->
 
         <!--.action--area-->
         <div class="action--area text-center mt60">
-            <button type="submit" class="btn btn--lg btn--red btn--arrow wp100 mb20">必須項目をご入力ください</button>
-            <a href="form-inquiry.html" class="btn btn--dark-grey btn--lg btn--arrow-back wp100"><span>前のページに戻る</span></a>
+            <button id="submitConfirm" type="submit" class="btn btn--lg btn--red btn--arrow wp100 mb20">必須項目をご入力ください</button>
+            <a id="btnBack" href="form-inquiry.html" class="btn btn--dark-grey btn--lg btn--arrow-back wp100"><span>前のページに戻る</span></a>
         </div>
         <!--END .action--area-->
 
@@ -149,6 +149,30 @@
 <!--Script-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/script.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        loadData();
+        $('#submitConfirm').click(function(){
+            window.location = "form-entry-finish.html";
+        });
+    })
+
+    function loadData(){
+        var queryString = decodeURIComponent(window.location.search);
+        var btnBack = $('#btnBack');
+        var href = btnBack.attr('href');
+        btnBack.attr('href',href+window.location.search);
+        queryString = queryString.substring(1);
+        var queries = queryString.split("&");
+        for (var i = 0; i < queries.length; i++)
+        {
+            var params = queries[i].split("=");
+            var paramName = params[0];
+            var value = params[1];
+            $('.' + paramName).html(value);
+        }
+    }
+</script>
 <!--END script-->
 </body>
 </html>
